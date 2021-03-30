@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MyApplicationList</string>
+    <string name="error_load_web_view">ERROR: no se pudo cargar la página, inténtelo de nuevo.</string>
+</resources>
