@@ -22,11 +22,13 @@ import kotlin.collections.ArrayList
 
 class EpisodeAdapter(private var episodeList: List<EpisodeModels>, private val context: Context):
     RecyclerView.Adapter<EpisodeAdapter.ViewHolder>(), Filterable {
-
-    // Variable para guardar los episodios
+    /**
+    Variable para guardar los episodios
+     */
     private val allEpisodeList: List<EpisodeModels> = episodeList
-
-    // Se pasa la información al activity
+    /**
+    Se pasa la información al activity
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
             LayoutInflater.from(parent.context).inflate(
@@ -34,7 +36,6 @@ class EpisodeAdapter(private var episodeList: List<EpisodeModels>, private val c
                 false
             )
         )
-
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = episodeList[position]
@@ -45,7 +46,9 @@ class EpisodeAdapter(private var episodeList: List<EpisodeModels>, private val c
             Glide.with(context).load(item.small_artwork_url)
                 .error(R.drawable.ic_launcher_background).centerCrop().into(it)
         }
-         //Obtiene la información de un ítem seleccionado y la  coloca en forma de string para  cargar la activity
+        /**
+        Obtiene la información de un ítem seleccionado y la  coloca en forma de string para  cargar la activity
+         */
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ItemActivity::class.java)
             intent.putExtra("episode", GsonBuilder().create().toJson(item))
@@ -57,8 +60,9 @@ class EpisodeAdapter(private var episodeList: List<EpisodeModels>, private val c
 
     override fun getFilter(): Filter {
         return object : Filter() {
-
-             //Aquí, la función recibe la consulta de búsqueda y filtra por nombre del título del episodio.
+            /**
+            Aquí, la función recibe la consulta de búsqueda y filtra por nombre del título del episodio.
+             */
             override fun performFiltering(charSequence: CharSequence): FilterResults {
                 val filterResults = FilterResults()
                 val query = charSequence.toString()
@@ -75,9 +79,9 @@ class EpisodeAdapter(private var episodeList: List<EpisodeModels>, private val c
                 filterResults.values = episodeList
                 return filterResults
             }
-
-             // Procesa todos los cambios a la lista de episodios
-
+            /**
+            Procesa todos los cambios a la lista de episodios
+             */
             override fun publishResults(charSequence: CharSequence, filterResults: FilterResults) {
                 episodeList = filterResults.values as List<EpisodeModels>
                 notifyDataSetChanged()
@@ -85,8 +89,9 @@ class EpisodeAdapter(private var episodeList: List<EpisodeModels>, private val c
         }
 
     }
-
-// clase ViewHoldar con la info a pintar en el activity
+    /**
+    clase ViewHoldar con la info a pintar en el activity
+     */
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var smallImg: ImageView? = itemView.idImage
         var titleTV: TextView = itemView.idTitle
@@ -96,3 +101,4 @@ class EpisodeAdapter(private var episodeList: List<EpisodeModels>, private val c
     override fun getItemCount(): Int = episodeList.size
 
 }
+

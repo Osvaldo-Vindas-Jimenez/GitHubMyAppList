@@ -12,3 +12,4 @@ interface APIService {
     @GET("episodes.json")
     fun getEpisodes(): Observable<EpisodeListModel<List<EpisodeModels>>>
 }
+

@@ -10,19 +10,24 @@ import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_item.*
 
 class ItemActivity : BaseActivity() {
-
-    // Identifica el activity  a crear
+    /**
+    Identifica el activity  a crear
+     */
     override val layout: Int get() = R.layout.activity_item
-    // variable episodio
+    /**
+    variable episodio
+     */
     private lateinit var episode: EpisodeModels
-
-    //Mientras oculta el activity anterior llama a showEpisodeData
+    /**
+    Mientras oculta el activity anterior llama a showEpisodeData
+     */
     override fun initializeUI() {
         super.getSupportActionBar()?.hide()
         showEpisodeData()
     }
-
-// Con el onClickListener llama a la clase webViewActivity y le pinta la url que tiene el episodio
+    /**
+    Con el onClickListener llama a la clase webViewActivity y le pinta la url que tiene el episodio
+     */
     override fun initOnClicks() {
         idButton.setOnClickListener {
             val intent = Intent(this, WebViewActivity::class.java)
@@ -30,10 +35,13 @@ class ItemActivity : BaseActivity() {
             startActivity(intent)
         }
     }
-
-    //Muestra el episodio seleccionado
+    /**
+    Muestra el episodio seleccionado
+     */
     private fun showEpisodeData() {
-        // Comprueba que el episodio no este vacío
+        /**
+        Comprueba que el episodio no este vacío
+         */
         if (intent.hasExtra("episode")) {
             episode = GsonBuilder().create()
                     .fromJson(intent.getStringExtra("episode").toString(), EpisodeModels::class.java)
@@ -48,3 +56,4 @@ class ItemActivity : BaseActivity() {
     override fun observeLiveData() {}
 
 }
+

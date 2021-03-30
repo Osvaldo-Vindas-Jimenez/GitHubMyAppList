@@ -5,15 +5,19 @@ import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+/**
+  Utiliza retrofit para consumir los datos desde mi APIService
+ */
 
-//Utiliza retrofit para consumir los datos desde mi APIService
 
 object Provider {
 
     private var gsonGonverterFactory: GsonConverterFactory? = null
 
+    /**
+      Conversor de Json a un objeto o clase Kotlin con GsonConverterFactory
+     */
 
-    //Conversor de Json a un objeto o clase Kotlin con GsonConverterFactory
 
     val converter: GsonConverterFactory
         get() {
@@ -29,9 +33,10 @@ object Provider {
 
 }
 
-
-  //Creamos la clase APIProvider Tomamos La Información de mi apiService para hacer las solicitudes de la aplicación con retrofit
-  //Además convertimos ese JSON en un objeto con gSonComberter
+/**
+  Creamos la clase APIProvider Tomamos La Información de mi apiService para hacer las solicitudes de la aplicación con retrofit
+  Además convertimos ese JSON en un objeto con gSonComberter
+ */
 
 object APIProvider {
     private val MyUrl: String = "https://www.nsscreencast.com/api/"

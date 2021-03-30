@@ -14,19 +14,27 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class MainViewModel(private val context: Context) {
-//Variable de tipo proveedor de API
+    /**
+    Variable de tipo proveedor de API
+     */
     private val provider: APIService = APIProvider.provider()
     private val compositeDisposable: CompositeDisposable =  CompositeDisposable()
-// Guarda los datos en un objeto mutable
+    /**
+    Guarda los datos en un objeto mutable
+     */
     private var data: MutableLiveData<Resource<List<EpisodeModels>>> = MutableLiveData()
     private val apiRepository = APIRepository(provider)
-// Función que retorna los episodios de la consulta en data
+    /**
+    Función que retorna los episodios de la consulta en data
+     */
     fun getData(): LiveData<Resource<List<EpisodeModels>>>? {
         getAPIEpisodes()
         return data
     }
 
-// Busca los datos de el API
+    /**
+    Busca los datos de el API
+     */
     private fun getAPIEpisodes() {
         data.value = Resource.loading()
         compositeDisposable.add(apiRepository.getEpisodes()

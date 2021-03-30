@@ -12,24 +12,30 @@ import com.example.myapplicationlist.common.BaseActivity
 import kotlinx.android.synthetic.main.activity_web_view.*
 
 class WebViewActivity : BaseActivity() {
-
-    // Identifica el activity  a crear
+    /**
+    Identifica el activity  a crear
+     */
     override val layout: Int get() = R.layout.activity_web_view  // Layout loaded on the BaseAdapter
 
-
-    // Mientras oculta el activity anterior llama a iniciar la vista web
+    /**
+    Mientras oculta el activity anterior llama a iniciar la vista web
+     */
     override fun initializeUI() {
         super.getSupportActionBar()?.hide()
         initWebView()
     }
 
-
-    // iniciar la vista web
+    /**
+    iniciar la vista web
+     */
     private fun initWebView() {
-    // Variable con la url da la pagina a mostrar
+        /**
+        Variable con la url da la pagina a mostrar
+         */
         val url = intent.getStringExtra("url")
-
-         //Inicialización de WebView.
+        /**
+        Inicialización de WebView.
+         */
         viewModelWeb.webViewClient = object: WebViewClient() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
@@ -47,8 +53,9 @@ class WebViewActivity : BaseActivity() {
                         .show()
             }
         }
-
-         //Si el url no es nul píntelo en la activity web view
+        /**
+        Si el url no es nul píntelo en la activity web view
+         */
         if (url != null) {
             viewModelWeb.loadUrl(url)
         }
@@ -62,3 +69,4 @@ class WebViewActivity : BaseActivity() {
     override fun observeLiveData() {}
 
 }
+
